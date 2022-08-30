@@ -9,12 +9,12 @@ namespace RamenRater.Models
 
     }
 
-    public DbSet<Ramen> Ramen { get; set; } //only using ramens because of entity database naming conventions
+    public DbSet<Ramen> Ramens { get; set; } //only using ramens because of entity database naming conventions
 
-    protected override void OnModelCreating(DbModelBuilder modelBuilder) 
-    { 
-      modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); //overrides the need for pluralising the table name
-    } 
+    // protected override void OnModelCreating(DbModelBuilder modelBuilder) 
+    // { 
+    //   modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); //Update: can't use this - overrides the need for pluralising the table name
+    // } 
 
   }
 }

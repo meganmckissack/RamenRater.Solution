@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using CretaceousPark.Models;
+using RamenRater.Models;
 
 namespace RamenRater
 {
@@ -21,7 +21,7 @@ namespace RamenRater
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<CretaceousParkContext>(opt =>
+            services.AddDbContext<RamenRaterContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
         }
