@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RamenRater.Models;
@@ -35,7 +38,7 @@ namespace RamenRater.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Animal>> GetRamen(int id)
+    public async Task<ActionResult<Ramen>> GetRamen(int id)
     {
       var ramen = await _db.Ramens.FindAsync(id);
 
