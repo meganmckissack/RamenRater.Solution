@@ -22,9 +22,47 @@ namespace RamenRater.Controllers
 
     // GET api/Ramens
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Ramen>>> Get()
+    public async Task<ActionResult<IEnumerable<Ramen>>> Get(string location, string type, int starRating)
     {
-      return await _db.Ramens.ToListAsync();
+      var query = _db.Ramens.AsQueryable();
+
+      if(location != null)
+      {
+        query = query.Where(entry => entry.Location == location);
+      }
+
+      if(type != null)
+      {
+        query = query.Where(entry => entry.Type == type);
+      }
+
+      if(starRating > 0 && starRating == 5)
+      {
+        query = query.Where(entry => entry.Rating == starRating);
+      }
+
+      if(starRating > 0 && starRating == 4)
+      {
+        query = query.Where(entry => entry.Rating == starRating);
+      }
+
+      if(starRating > 0 && starRating == 3)
+      {
+        query = query.Where(entry => entry.Rating == starRating);
+      }
+
+      if(starRating > 0 && starRating == 2)
+      {
+        query = query.Where(entry => entry.Rating == starRating);
+      }
+
+      if(starRating > 0 && starRating == 1)
+      {
+        query = query.Where(entry => entry.Rating == starRating);
+      }
+
+      return await query.ToListAsync();
+      
     }
 
     // POST api/Ramens
