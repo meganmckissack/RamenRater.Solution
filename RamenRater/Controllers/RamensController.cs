@@ -5,17 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+// using Microsoft.AspNetCore.Mvc.Versioning;
 using RamenRater.Models;
 
 namespace RamenRater.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
-  public class RamensController : ControllerBase
+  [ApiVersion("1.0")]
+  [Route("api/Ramens")]
+  // [Route("api/[controller]")]
+  // [ApiController]
+  public class RamensV1Controller : ControllerBase
   {
     private readonly RamenRaterContext _db;
 
-    public RamensController(RamenRaterContext db)
+    public RamensV1Controller(RamenRaterContext db)
+    {
+      _db = db;
+    }
+
+    // GET api/Ramens
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Ramen>>> Get()
+    {
+      return await _db.Ramens.ToListAsync();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Ramen>> Post(Ramen ramen)
+    {
+      _db.Ramens.Add(ramen);
+      await _db.SaveChangesAsync();
+
+      return CreatedAtAction("Post", new { id = ramen.RamenId }, ramen);
+    }
+  }
+}
+
+
+namespace RamenRater.Controllers
+{
+  [ApiVersion("2.0")]
+  [Route("api/{v:apiVersion}Ramens")]
+  // [Route("api/{v:apiVersion}[controller]")]
+  // [ApiController]
+  public class RamensV2Controller : ControllerBase
+  {
+    private readonly RamenRaterContext _db;
+
+    public RamensV2Controller(RamenRaterContext db)
     {
       _db = db;
     }

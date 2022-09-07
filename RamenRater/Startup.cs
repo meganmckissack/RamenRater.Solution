@@ -24,6 +24,16 @@ namespace RamenRater
             services.AddDbContext<RamenRaterContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
+
+            //API versioning service
+            services.AddApiVersioning(o => 
+            {
+              o.ReportApiVersions = true; //ReportApiVersions flag is used to add the API versions in the response header
+              o.AssumeDefaultVersionWhenUnspecified = true;  //flag is used to set the default version when the client has not specified any versions. Without this flag, UnsupportedApiVersion exception would occur in the case when the version is not specified by the client
+              // o.DefaultApiVersion = new ApiVersion(1, 0);  //flag is used to set the default version count
+              o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+              
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
