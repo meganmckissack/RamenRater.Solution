@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 // using Microsoft.AspNetCore.Mvc.Versioning;
 using RamenRater.Models;
 
@@ -14,7 +13,7 @@ namespace RamenRater.Controllers
   [ApiVersion("1.0")]
   [Route("api/Ramens")]
   // [Route("api/[controller]")]
-  // [ApiController]
+  [ApiController]
   public class RamensV1Controller : ControllerBase
   {
     private readonly RamenRaterContext _db;
@@ -46,9 +45,9 @@ namespace RamenRater.Controllers
 namespace RamenRater.Controllers
 {
   [ApiVersion("2.0")]
-  [Route("api/{v:apiVersion}Ramens")]
+  [Route("api/Ramens")]
   // [Route("api/{v:apiVersion}[controller]")]
-  // [ApiController]
+  [ApiController]
   public class RamensV2Controller : ControllerBase
   {
     private readonly RamenRaterContext _db;

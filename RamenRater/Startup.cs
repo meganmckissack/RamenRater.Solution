@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc; //new using statement takes care of apiversion error
 using RamenRater.Models;
 
 namespace RamenRater
@@ -26,12 +27,12 @@ namespace RamenRater
             services.AddControllers();
 
             //API versioning service
-            services.AddApiVersioning(o => 
+            services.AddApiVersioning(options => 
             {
-              o.ReportApiVersions = true; //ReportApiVersions flag is used to add the API versions in the response header
-              o.AssumeDefaultVersionWhenUnspecified = true;  //flag is used to set the default version when the client has not specified any versions. Without this flag, UnsupportedApiVersion exception would occur in the case when the version is not specified by the client
-              // o.DefaultApiVersion = new ApiVersion(1, 0);  //flag is used to set the default version count
-              o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+              options.ReportApiVersions = true; //ReportApiVersions flag is used to add the API versions in the response header
+              options.AssumeDefaultVersionWhenUnspecified = true;  //flag is used to set the default version when the client has not specified any versions. Without this flag, UnsupportedApiVersion exception would occur in the case when the version is not specified by the client
+              options.DefaultApiVersion = new ApiVersion(1, 0);  //flag is used to set the default version count
+              // options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0); //this line worked last time
               
             });
         }
