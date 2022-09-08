@@ -11,3 +11,19 @@ https://code-maze.com/aspnetcore-api-versioning/ \
 used the line \
 ` o.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);` \
 from this tutorial in configure services to make the first tutorial work
+
+route for version 2.0 is \
+`http://localhost:5004/api/ramens?api-version=2.0`
+
+
+Swagger and Versioning implimentation
+
+Tutorials
+https://referbruv.com/blog/integrating-aspnet-core-api-versions-with-swagger-ui/ \
+https://www.meziantou.net/versioning-an-asp-net-core-api.htm#integration-with-ope
+
+
+Current issues \
+https://github.com/dotnet/aspnet-api-versioning/issues/309 \
+https://github.com/dotnet/aspnet-api-versioning/issues/434 \
+https://stackoverflow.com/questions/65623399/the-type-or-namespace-name-apiversiondescription-could-not-be-found-are-you-m
